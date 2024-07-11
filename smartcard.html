@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Card Generator</title>
+    <style>
+html,body{
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: none;
+}
+
+
+        body {
+            font-family: Arial, sans-serif;
+           
+            text-align: center;
+            padding: 20px;
+            background-image: url("pp.jpg");
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+
+        .banner {
+            background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+        }
+
+        .card {
+            width: 700px;
+            height: 430px;
+            background-color: #87CEEB; /* Sky blue background */
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: 100px;
+          
+        }
+
+        .header {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.5;
+            padding: 10px;
+            margin-top: 6px;
+        }
+
+        .line {
+            width: 90%;
+            height: 5px;
+            background-color: rgb(243, 43, 8); /* Red color */
+            margin: -12px auto;
+        }
+
+        .title {
+            text-transform: uppercase;
+            position: absolute;
+            top: 145px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            font-weight: bold;
+            font-size: 24px;
+            color: red; /* Red color */
+        }
+
+        .left {
+            position: absolute;
+            top: 170px;
+            left: 20px;
+            width: 45%;
+            text-align: left;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        .right {
+            position: absolute;
+            top: 170px;
+            right: 20px;
+            width: 35%;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .photo1 {
+            position: absolute;
+            top: 220px;
+            right: 20px;
+            width: 160px;
+            height: 160px;
+            border: none;
+        }
+
+        .registration {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            font-size: 14px;
+        }
+
+        .issuing {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+        }
+
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        fieldset {
+            border: 2px solid blue;
+            padding: 10px;
+            margin-bottom: 20px;
+            margin-top: 200px;
+            
+        }
+
+        legend {
+            font-weight: bold;
+            padding: 0 5px;
+        }
+
+        .input-form label {
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .input-form label.required::after {
+            content: " *";
+            color: red;
+        }
+
+        .input-form input,
+        .input-form select {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .print-button {
+            margin-top: 20px;
+        }
+
+        @media print {
+    body > *:not(.card) {
+        display: none;
+    }
+    .card {
+        background-color: #87CEEB; /* Sky blue background */
+        box-shadow: none;
+        margin: 0;
+    }
+}
+
+        .flag-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: 120px;
+            z-index: 100;
+            border-radius: 60%;
+          
+        }
+        .flag-image {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 120px; /* Adjust width as needed */
+        height: 120px; /* Adjust height as needed */
+        z-index: 100; /* Ensure it appears above other elements */
+        border-radius: 50%; /* Optional: round the corners */
+    }
+        .chip-image {
+            position: absolute;
+            top: 135px;
+            left: 20px;
+            width: 60px;
+            height: 50px;
+            border: 1px solid #000;
+            background-color: white;
+            z-index: 50;
+        }
+      .input-form{
+        box-shadow:#fa4299;
+        margin-left: 30px;
+      }
+
+
+      /* Fieldset ko lagi */
+      @media (max-width: 600px) {
+    .input-form {
+        padding: 10px;
+        margin: 5px 0;
+        font-size: 14px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .input-form {
+        padding: 15px;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .input-form {
+        padding: 20px;
+        margin: 15px 0;
+        font-size: 18px;
+    }
+}
+
+
+/* Banner ko lagi */
+@media (max-width: 600px) {
+    .banner{
+        padding: 10px;
+        margin: 5px 0;
+        font-size: 15px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .banner {
+        padding: 15px;
+        margin: 10px 0;
+        font-size: 20px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .banner{
+        padding: 20px;
+        margin: 15px 0;
+        font-size: 30px;
+    }
+}
+/* Imageko lagi */
+@media (max-width: 600px) {
+    .flag-images,.flag-image{
+        padding: 10px;
+        margin: 5px 0;
+        font-size: 10px;
+        width:50px;
+        height: 50px;
+
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .flag-images,.flag-image {
+        padding: 15px;
+        margin: 10px 0;
+        font-size: 20px;
+        width:100px;
+        height: 100px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .flag-images,.flag-image{
+        padding: 20px;
+        margin: 15px 0;
+        font-size: 30px;
+        width:150px;
+        height: 150px;
+    }
+}
+
+
+/*Field set ko lagi */
+
+
+
+
+@media (max-width: 600px)  {
+    .fieldset {
+        width: 40%; /* Adjust the width for medium screens */
+        padding: 15px;
+        font-size: 18px;
+        .input-form{
+        justify-content: flex-start; /* Move to the left */
+    }
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .fieldset {
+        width: 40%; /* Adjust the width for medium screens */
+        padding: 15px;
+        font-size: 22px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .fieldset{
+        width: 50%; /* Adjust the width for larger screens */
+        padding: 20px;
+        font-size: 30px;
+    }
+}
+
+
+
+/*Card milauna ko lagi */
+
+
+
+
+@media (max-width: 600px)  {
+    .card {top:20px;
+        width: 400px;height: 350px; /* Adjust the width for medium screens */
+        padding: 5px;
+        font-size: 12px;
+        
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .card  {
+        width: 450px;height: 350px;  /* Adjust the width for medium screens */
+        padding: 15px;
+        font-size: 13px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .card {
+        width: 700px;height: 400px; 
+        /* Adjust the width for larger screens */
+        padding: 20px;
+        font-size: 15px;
+    }
+}
+/*Card ko header ko text ko lagi*/
+@media (max-width: 600px)  {
+    .header {
+    
+  
+        font-size: 12px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .header {
+       
+     
+        font-size: 15px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .header {
+     
+      
+      
+        font-size: 16px;
+    }
+}
+
+/*Identity card lekheko text ko lagi*/
+@media (max-width: 600px)  {
+    .title {
+    
+  top: 100px;
+        font-size: 12px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .title {
+       
+        top: 130px;
+        font-size: 13px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .title {
+     
+      
+      
+        font-size: 15px;
+    }
+}
+
+/*chip ko photo ko lagi*/
+@media (max-width: 600px)  {
+    .chip-image {
+    
+  top:98px;
+       height: 40px;
+       width: 50px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .chip-image{
+       
+        top:125px;
+        height: 44px;
+        width: 50px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+   .chip-image {
+     
+    top:138px;
+      
+    height: 49px;
+    width: 58px;
+    }
+}
+
+/*card ko logoko lagi*/
+@media (max-width: 600px)  {
+    .logo {
+    
+  
+       height: 70px;
+       width: 70px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .logo{
+       
+     
+        height: 90px;
+        width: 90px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .logo{
+     
+      
+      
+    height: 100px;
+    width: 100px;
+    }
+}
+
+/*card ko logoko lagi*/
+@media (max-width: 600px)  {
+    .line {
+    
+  
+       height: 2px;
+       width: 400px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .line{
+       
+     
+        height: 3px;
+        width: 450px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .line{
+     
+      
+      
+    height: 4px;
+    width: 700px;
+    }
+}
+
+/*card ko passwportsize photoko lagi*/
+@media (max-width: 600px)  {
+    .photo1 {
+    
+  top:230px;
+       height: 100px;
+       width: 100px;
+    }
+}
+
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .photo1{
+       
+     
+        top:210px;
+       height: 130px;
+       width: 130px;
+    }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .photo1{
+     
+      
+      
+        top:250px;
+       height: 140px;
+       width: 140px;
+    }
+}
+/*Identity cardko generated left side ko details ko lagi*/
+@media (max-width: 600px)  {
+    #leftDetails{
+    
+  top: 135px;
+
+    }
+}
+
+
+
+
+
+
+
+/*Identity cardko generated right side ko details ko lagi*/
+@media (max-width: 600px)  {
+    #registrationNo{
+    
+  top:70px;
+  font-size:12px;
+
+    }
+}
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    #registrationNo{
+    font-size:14px;
+    top: 93px;
+  
+      }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    #registrationNo{
+        font-size:16px;
+    top: 100px;
+  
+      }
+}
+
+
+
+/*Identity cardko isuuing officeko signatureko lagi*/
+@media (max-width: 600px)  {
+    .issuing{
+    font-size: 12px;
+  bottom:10px;
+
+    }
+}
+/* Styles for screens between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .issuing{
+        font-size: 14px;
+    bottom:10px;
+  
+}}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+    .issuing{
+        font-size: 16px;
+    bottom:10px;
+  
+}
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="banner"><p align="center">Nepal Trekking Agency System<br>नेपाल ट्रेकिङ एजेन्सी प्रणाली </p></div>
+    <img src="egv.svg" alt="GIF Image" class="flag-images"> <!-- GIF image at top left corner -->
+    <img src="flag.gif" alt="GIF Image" class="flag-image"> <!-- GIF image at top left corner -->
+    <div class="input-form">
+       
+        <fieldset>
+            <legend>Add Personal Details (व्यक्तिगत विवरणहरू थप्नुहोस्)</legend>
+            <label for="name" class="required">Name(नाम):</label>
+            <div id="nameError" class="error"></div>
+            <input type="text" id="name" placeholder="Enter your name">
+
+            <label for="address" class="required">Address(ठेगाना):</label>
+            <div id="addressError" class="error"></div>
+            <input type="text" id="address" placeholder="Enter your address">
+
+            <label for="citizenshipNumber" class="required">Citizenship Number(नागरिकता नम्बर):</label>
+            <div id="citizenshipNumberError" class="error"></div>
+            <input type="text" id="citizenshipNumber" placeholder="Enter your citizenship number (numbers and -)">
+
+            <label for="contactNumber" class="required">Contact Number(सम्पर्क नम्बर):</label>
+            <div id="contactNumberError" class="error"></div>
+            <div class="input-group">
+                <select id="countryCode">
+                    <option value="+977">Nepal (+977)</option>
+                    <option value="+91">India (+91)</option>
+                    <option value="+86">China (+86)</option>
+                    <option value="+351">Portugal (+351)</option>
+                    <option value="+7">Russia (+7)</option>
+                </select>
+                <input type="text" id="contactNumber" placeholder="Enter your 10-digit contact number">
+            </div>
+
+            <label for="language" class="required">Language(भाषा):</label>
+            <div id="languageError" class="error"></div>
+            <input type="text" id="language" placeholder="Enter languages spoken">
+
+            <label for="expiryDate" class="required">Expiry Date(म्याद सकिने मिति):</label>
+            <div id="expiryDateError" class="error"></div>
+            <input type="text" id="expiryDate" placeholder="Enter expiry date (YYYY/MM/DD)">
+
+            <label for="registrationNumber" class="required">Registration Number(दर्ता नम्बर):</label>
+            <div id="registrationNumberError" class="error"></div>
+            <input type="text" id="registrationNumber" placeholder="Enter registration number">
+
+            <label for="passportPhoto" class="required">Passport Size Photo(पासपोर्ट साइज फोटो):</label>
+            <div id="photoError" class="error"></div>
+            <input type="file" id="passportPhoto" accept="image/*">
+        </fieldset>
+  
+        <button onclick="generateCard()">Generate Card</button>
+    </div>
+
+    <div class="card" id="idCard">
+        <img src="egv.svg" alt="Logo" class="logo" id="logoImg">
+        <div class="header">
+            Koshi Province Government<br>
+            Ministry of Culture and Tourism<br>
+            SOLUKHUMBU TOURISM OFFICE<br>
+             Solukhumbu,Nepal
+        </div>
+        <div class="line"></div>
+        <div class="title">IDENTITY CARD FOR TREKKING GUIDE</div>
+        <div class="left" id="leftDetails">
+            <!-- User input will populate here -->
+        </div>
+        <div class="right" id="rightDetails">
+            <!-- User input will populate here -->
+        </div>
+        <img src="" alt="" class="photo1" id="photoImg">
+        <div class="registration" id="registrationNo"></div>
+        <div class="issuing">Issuing Office Signature</div>
+        <img src="chip.jpg" alt="chip-ipload" class="chip-image">
+    </div>
+
+    <button class="print-button" onclick="printCard()">Print Card</button>
+
+    <script>
+        function generateCard() {
+            // Get user input values
+            const name = document.getElementById('name').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const citizenshipNumber = document.getElementById('citizenshipNumber').value.trim();
+            const countryCode = document.getElementById('countryCode').value;
+            const contactNumber = document.getElementById('contactNumber').value.trim();
+            const language = document.getElementById('language').value.trim();
+            const expiryDate = document.getElementById('expiryDate').value.trim();
+            const registrationNumber = document.getElementById('registrationNumber').value.trim();
+
+            // Regular expressions for validation
+            const nameRegex = /^[a-zA-Z\s]+$/;
+            const addressRegex = /^[a-zA-Z0-9\s,]+$/;
+            const citizenshipNumberRegex = /^[\d-]+$/; // Numbers and -
+            const contactNumberRegex = /^\d{10}$/; // 10 digit number
+            const languageRegex = /^[a-zA-Z\s,]+$/; // Letters, spaces, and commas
+            const expiryDateRegex = /^\d{4}\/\d{2}\/\d{2}$/; // YYYY/MM/DD
+
+            // Error message elements
+            const nameError = document.getElementById('nameError');
+            const addressError = document.getElementById('addressError');
+            const citizenshipNumberError = document.getElementById('citizenshipNumberError');
+            const contactNumberError = document.getElementById('contactNumberError');
+            const languageError = document.getElementById('languageError');
+            const expiryDateError = document.getElementById('expiryDateError');
+            const registrationNumberError = document.getElementById('registrationNumberError');
+            const photoError = document.getElementById('photoError');
+
+            // Clear previous error messages
+            nameError.textContent = '';
+            addressError.textContent = '';
+            citizenshipNumberError.textContent = '';
+            contactNumberError.textContent = '';
+            languageError.textContent = '';
+            expiryDateError.textContent = '';
+            registrationNumberError.textContent = '';
+            photoError.textContent = '';
+
+            // Validation flag
+            let isValid = true;
+
+            // Validate inputs
+            if (!name || !nameRegex.test(name)) {
+                nameError.textContent = "Please enter a valid name (only letters and spaces).";
+                isValid = false;
+            }
+            if (!address || !addressRegex.test(address)) {
+                addressError.textContent = "Please enter a valid address (letters, numbers, and commas).";
+                isValid = false;
+            }
+            if (!citizenshipNumber || !citizenshipNumberRegex.test(citizenshipNumber)) {
+                citizenshipNumberError.textContent = "Please enter a valid citizenship number (numbers and -).";
+                isValid = false;
+            }
+            if (!contactNumber || !contactNumberRegex.test(contactNumber)) {
+                contactNumberError.textContent = "Please enter a valid 10-digit contact number.";
+                isValid = false;
+            }
+            if (!language || !languageRegex.test(language)) {
+                languageError.textContent = "Please enter valid languages.";
+                isValid = false;
+            }
+            if (!expiryDate || !expiryDateRegex.test(expiryDate)) {
+                expiryDateError.textContent = "Please enter a valid expiry date (YYYY/MM/DD).";
+                isValid = false;
+            }
+            if (!registrationNumber) {
+                registrationNumberError.textContent = "Please enter a registration number.";
+                isValid = false;
+            }
+
+            // Get passport size photo
+            const fileInput = document.getElementById('passportPhoto');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                photoError.textContent = "Please upload a passport size photo.";
+                isValid = false;
+            }
+
+            // Generate card if all inputs are valid
+            if (isValid) {
+                const photoUrl = URL.createObjectURL(file);
+
+                // Display input details on the card
+                document.getElementById('leftDetails').innerHTML = `
+                    <p>Name: ${name}</p>
+                    <p>Address: ${address}</p>
+                    <p>Citizenship Number: ${citizenshipNumber}</p>
+                    <p>Contact Number: ${countryCode} ${contactNumber}</p>
+                    <p>Language: ${language}</p>
+                    <p>Expiry Date: ${expiryDate}</p>
+                `;
+                document.getElementById('registrationNo').textContent = `Reg. No.: ${registrationNumber}`;
+                document.getElementById('photoImg').src = photoUrl; // Display photo on the card
+            } else {
+                alert("Cannot generate card. Please fill all fields correctly.");
+            }
+        }
+
+        function printCard() {
+            // Check if the card is generated
+            const cardContent = document.getElementById('leftDetails').innerHTML.trim();
+            if (cardContent === '') {
+                alert("Cannot print card. Please generate the card first.");
+                return;
+            }
+
+            // Print the card
+            window.print();
+        }
+    </script>
+</body>
+</html>
